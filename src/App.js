@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { legacy_createStore as createStore } from 'redux';
-import rootReducer from './redux/reducers/index';
-
-const store = createStore(rootReducer);
-console.log(store.getState());
+import { Route, Switch } from 'react-router-dom';
+import Login from './pages/Login';
 
 export default class App extends Component {
   render() {
     return (
-      <div>App</div>
+      <Switch>
+        <Route path="/" component={ Login } />
+      </Switch>
     );
   }
 }
