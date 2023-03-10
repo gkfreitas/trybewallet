@@ -13,8 +13,14 @@ export default function wallet(state = INITIAL_STATE, action) {
   case 'REQUEST_SUCCESSFUL':
     return {
       ...state,
-      currencies: action.payload.filter((e) => e !== 'USDT'),
+      currencies: Object.keys(action.payload).filter((e) => e !== 'USDT'),
       loaded: true,
+    };
+  case 'UPDATE_EXPENSE':
+    action.payload.id = state.expenses.length;
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload],
     };
   default:
     return state;

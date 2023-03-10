@@ -4,6 +4,22 @@ export const updateEmail = (state) => ({
   email: state,
 });
 
+export const updateExpense = ({
+  value, description, currency, method, tag,
+}, exchangeRates) => ({
+  type: 'UPDATE_EXPENSE',
+  payload: { id: 0, value, description, currency, method, tag, exchangeRates },
+});
+
+export function updateExpenseFetch(state) {
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    delete data.USDT;
+    dispatch(updateExpense(state, data));
+  };
+}
+
 function requestSuccessful(currencies) {
   return {
     type: 'REQUEST_SUCCESSFUL',
@@ -12,9 +28,9 @@ function requestSuccessful(currencies) {
 }
 
 export function fecthCurrencies() {
-  return (dispatch) => {
-    fetch('https://economia.awesomeapi.com.br/json/all')
-      .then((response) => response.json())
-      .then((data) => dispatch(requestSuccessful(Object.keys(data))));
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    dispatch(requestSuccessful(data));
   };
 }
