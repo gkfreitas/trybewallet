@@ -44,7 +44,7 @@ class WalletForm extends Component {
     const paymentMethods = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     return (
-      <form>
+      <form data-testid="form-wallet">
         <label>
           Valor:
           <input
@@ -73,7 +73,9 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
             value={ currency }
           >
-            {loadedState && currenciesState.map((e) => <option key={ e }>{e}</option>)}
+            {loadedState && currenciesState.map((e) => (
+              <option data-testid="currency-option" key={ e }>{e}</option>
+            ))}
           </select>
         </label>
         <label>
@@ -84,7 +86,9 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
             value={ method }
           >
-            {paymentMethods.map((e) => <option key={ e }>{e}</option>)}
+            {paymentMethods.map((e) => (
+              <option data-testid="method-option" key={ e }>{e}</option>
+            ))}
           </select>
         </label>
         <label>
@@ -95,7 +99,7 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
             value={ tag }
           >
-            {tags.map((e) => <option key={ e }>{e}</option>)}
+            {tags.map((e) => <option data-testid="tag-option" key={ e }>{e}</option>)}
           </select>
         </label>
         <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>

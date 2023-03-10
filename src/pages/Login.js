@@ -39,21 +39,28 @@ class Login extends Component {
     const { email, password, isDisabled } = this.state;
     return (
       <form>
-        <input
-          data-testid="email-input"
-          onChange={ this.handleChange }
-          type="email"
-          value={ email }
-          name="email"
-        />
-        <input
-          data-testid="password-input"
-          onChange={ this.handleChange }
-          type="password"
-          value={ password }
-          name="password"
-          minLength="6"
-        />
+        <label>
+          Email:
+
+          <input
+            data-testid="email-input"
+            onChange={ this.handleChange }
+            type="email"
+            value={ email }
+            name="email"
+          />
+        </label>
+        <label>
+          Senha:
+          <input
+            data-testid="password-input"
+            onChange={ this.handleChange }
+            type="password"
+            value={ password }
+            name="password"
+            minLength="6"
+          />
+        </label>
         <Link to="/carteira">
           <button onClick={ this.handleClick } disabled={ isDisabled }>Entrar</button>
         </Link>
