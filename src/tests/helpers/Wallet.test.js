@@ -38,7 +38,9 @@ describe('Testes para a pagina Wallet', () => {
       },
       wallet: {
         currencies,
-        expenses: [],
+        expenses: [
+
+        ],
         loaded: true,
       },
     };
@@ -98,7 +100,52 @@ describe('Testes para a pagina Wallet', () => {
       },
       wallet: {
         currencies,
-        expenses: [],
+        expenses: [{
+          id: 0,
+          value: '100',
+          description: '',
+          currency: 'USD',
+          method: 'Dinheiro',
+          tag: 'Alimentação',
+          exchangeRates: {
+            USD: {
+              code: 'USD',
+              codein: 'BRL',
+              name: 'Dólar Americano/Real Brasileiro',
+              high: '5.22',
+              low: '5.1514',
+              varBid: '0.0432',
+              pctChange: '0.84',
+              bid: '5.2062',
+              ask: '5.2092',
+              timestamp: '1678478439',
+              create_date: '2023-03-10 17:00:39',
+            },
+          },
+        },
+        {
+          id: 1,
+          value: '100',
+          description: '',
+          currency: 'USD',
+          method: 'Dinheiro',
+          tag: 'Alimentação',
+          exchangeRates: {
+            USD: {
+              code: 'USD',
+              codein: 'BRL',
+              name: 'Dólar Americano/Real Brasileiro',
+              high: '5.22',
+              low: '5.1514',
+              varBid: '0.0432',
+              pctChange: '0.84',
+              bid: '5.2062',
+              ask: '5.2092',
+              timestamp: '1678478439',
+              create_date: '2023-03-10 17:00:39',
+            },
+          },
+        }],
         loaded: true,
       },
     };
@@ -124,5 +171,8 @@ describe('Testes para a pagina Wallet', () => {
 
     expect(valueInput).toHaveTextContent('');
     expect(descriptionInput).toHaveTextContent('');
+
+    const totalPrice = screen.getByTestId('total-field');
+    expect(totalPrice).toHaveTextContent('1041.84');
   });
 });

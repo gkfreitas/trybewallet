@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   loaded: false,
+  totalPrice: 0,
 };
 
 export default function wallet(state = INITIAL_STATE, action) {
@@ -18,6 +19,7 @@ export default function wallet(state = INITIAL_STATE, action) {
     };
   case 'UPDATE_EXPENSE':
     action.payload.id = state.expenses.length;
+
     return {
       ...state,
       expenses: [...state.expenses, action.payload],
