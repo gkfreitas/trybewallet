@@ -7,13 +7,63 @@ import mockData from './mockData';
 import { renderWithRouterAndRedux } from './renderWith';
 
 describe('Testes para a pagina Wallet', () => {
-  it('Teste dos elementos do componente Header', () => {
-    const initialStateMock = {
-      user: {
-        email: 'emailteste@gmail.com',
+  const currencies = Object.keys(mockData);
+  const initialStateMock = {
+    user: {
+      email: 'emailteste@gmail.com',
+    },
+    wallet: {
+      currencies,
+      expenses: [{
+        id: 0,
+        value: '100',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+        exchangeRates: {
+          USD: {
+            code: 'USD',
+            codein: 'BRL',
+            name: 'Dólar Americano/Real Brasileiro',
+            high: '5.22',
+            low: '5.1514',
+            varBid: '0.0432',
+            pctChange: '0.84',
+            bid: '5.2062',
+            ask: '5.2092',
+            timestamp: '1678478439',
+            create_date: '2023-03-10 17:00:39',
+          },
+        },
       },
-    };
-
+      {
+        id: 1,
+        value: '100',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+        exchangeRates: {
+          USD: {
+            code: 'USD',
+            codein: 'BRL',
+            name: 'Dólar Americano/Real Brasileiro',
+            high: '5.22',
+            low: '5.1514',
+            varBid: '0.0432',
+            pctChange: '0.84',
+            bid: '5.2062',
+            ask: '5.2092',
+            timestamp: '1678478439',
+            create_date: '2023-03-10 17:00:39',
+          },
+        },
+      }],
+      loaded: true,
+    },
+  };
+  it('Teste dos elementos do componente Header', () => {
     renderWithRouterAndRedux(<Header />, {
       initialState: initialStateMock,
     });
@@ -23,7 +73,7 @@ describe('Testes para a pagina Wallet', () => {
     expect(email).toBeInTheDocument();
 
     const initialTotalPrice = screen.getByTestId('total-field');
-    expect(initialTotalPrice).toHaveTextContent('0.00');
+    expect(initialTotalPrice).toHaveTextContent('1041.84');
 
     const baseCurrency = screen.getByTestId('header-currency-field');
     expect(baseCurrency).toBeInTheDocument();
@@ -31,21 +81,6 @@ describe('Testes para a pagina Wallet', () => {
   });
 
   it('Teste dos elementos do componente WalletForm', () => {
-    const currencies = Object.keys(mockData);
-
-    const initialStateMock = {
-      user: {
-        email: 'gabrielkelvinfreitas@gmail.com',
-      },
-      wallet: {
-        currencies,
-        expenses: [
-
-        ],
-        loaded: true,
-      },
-    };
-
     renderWithRouterAndRedux(<App />, {
       initialState: initialStateMock,
       initialEntries: ['/carteira'],
@@ -93,64 +128,6 @@ describe('Testes para a pagina Wallet', () => {
   });
 
   it('Teste para as funcionalidades da pagina wallet', () => {
-    const currencies = Object.keys(mockData);
-
-    const initialStateMock = {
-      user: {
-        email: 'gabrielkelvinfreitas@gmail.com',
-      },
-      wallet: {
-        currencies,
-        expenses: [{
-          id: 0,
-          value: '100',
-          description: '',
-          currency: 'USD',
-          method: 'Dinheiro',
-          tag: 'Alimentação',
-          exchangeRates: {
-            USD: {
-              code: 'USD',
-              codein: 'BRL',
-              name: 'Dólar Americano/Real Brasileiro',
-              high: '5.22',
-              low: '5.1514',
-              varBid: '0.0432',
-              pctChange: '0.84',
-              bid: '5.2062',
-              ask: '5.2092',
-              timestamp: '1678478439',
-              create_date: '2023-03-10 17:00:39',
-            },
-          },
-        },
-        {
-          id: 1,
-          value: '100',
-          description: '',
-          currency: 'USD',
-          method: 'Dinheiro',
-          tag: 'Alimentação',
-          exchangeRates: {
-            USD: {
-              code: 'USD',
-              codein: 'BRL',
-              name: 'Dólar Americano/Real Brasileiro',
-              high: '5.22',
-              low: '5.1514',
-              varBid: '0.0432',
-              pctChange: '0.84',
-              bid: '5.2062',
-              ask: '5.2092',
-              timestamp: '1678478439',
-              create_date: '2023-03-10 17:00:39',
-            },
-          },
-        }],
-        loaded: true,
-      },
-    };
-
     renderWithRouterAndRedux(<App />, {
       initialState: initialStateMock,
       initialEntries: ['/carteira'],
@@ -178,67 +155,6 @@ describe('Testes para a pagina Wallet', () => {
   });
 
   it('Teste para o componente Table', async () => {
-    const currencies = Object.keys(mockData);
-
-    const initialStateMock = {
-      user: {
-        email: 'gabrielkelvinfreitas@gmail.com',
-      },
-      wallet: {
-        currencies,
-        expenses: [{
-          id: 0,
-          value: '100',
-          description: '',
-          currency: 'USD',
-          method: 'Dinheiro',
-          tag: 'Alimentação',
-          exchangeRates: {
-            USD: {
-              code: 'USD',
-              codein: 'BRL',
-              name: 'Dólar Americano/Real Brasileiro',
-              high: '5.22',
-              low: '5.1514',
-              varBid: '0.0432',
-              pctChange: '0.84',
-              bid: '5.2062',
-              ask: '5.2092',
-              timestamp: '1678478439',
-              create_date: '2023-03-10 17:00:39',
-            },
-          },
-        },
-        {
-          id: 1,
-          value: '100',
-          description: '',
-          currency: 'USD',
-          method: 'Dinheiro',
-          tag: 'Alimentação',
-          exchangeRates: {
-            USD: {
-              code: 'USD',
-              codein: 'BRL',
-              name: 'Dólar Americano/Real Brasileiro',
-              high: '5.22',
-              low: '5.1514',
-              varBid: '0.0432',
-              pctChange: '0.84',
-              bid: '5.2062',
-              ask: '5.2092',
-              timestamp: '1678478439',
-              create_date: '2023-03-10 17:00:39',
-            },
-          },
-        }],
-        idToEdit: 0,
-        editor: false,
-        totalPrice: 0,
-        loaded: true,
-      },
-    };
-
     const { store } = renderWithRouterAndRedux(<App />, {
       initialState: initialStateMock,
       initialEntries: ['/carteira'],
