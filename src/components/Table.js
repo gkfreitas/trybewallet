@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
   render() {
@@ -18,35 +18,35 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {expensesState.map(({
-            id,
-            value,
-            description,
-            currency,
-            method,
-            tag,
-            exchangeRates,
-          }) => (
-            <tr key={ id }>
-              <td>{description}</td>
-              <td>{tag}</td>
-              <td>{method}</td>
-              <td>{parseFloat(value).toFixed(2)}</td>
-              <td>{currency}</td>
+          {expensesState.map((e) => (
+            <tr key={ e.id }>
+              <td>{e.description}</td>
+              <td>{e.tag}</td>
+              <td>{e.method}</td>
+              <td>{parseFloat(e.value).toFixed(2)}</td>
+              <td>{e.currency}</td>
               <td>BRL</td>
               <td>
                 {
-                  parseFloat(exchangeRates[currency].ask).toFixed(2)
+                  parseFloat(e.exchangeRates[e.currency].ask).toFixed(2)
                 }
                 { ' '}
-                {parseFloat(value * exchangeRates[currency].ask).toFixed(2)}
+                {parseFloat(e.value * e.exchangeRates[e.currency].ask).toFixed(2)}
 
               </td>
-              <td>{exchangeRates[currency].name}</td>
+              <td>{e.exchangeRates[e.currency].name}</td>
               <td>
                 <button
+                  onClick={
+                    () => dispatch(editExpense(e))
+                  }
+                  data-testid="edit-btn"
+                >
+                  Editar
+                </button>
+                <button
                   data-testid="delete-btn"
-                  onClick={ () => dispatch(deleteExpense(id)) }
+                  onClick={ () => dispatch(deleteExpense(e.id)) }
                 >
                   Excluir
                 </button>

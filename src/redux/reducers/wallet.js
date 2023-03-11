@@ -10,6 +10,8 @@ const INITIAL_STATE = {
 };
 
 export default function wallet(state = INITIAL_STATE, action) {
+  const expensesArray = state.expenses;
+
   switch (action.type) {
   case 'REQUEST_SUCCESSFUL':
     return {
@@ -30,6 +32,29 @@ export default function wallet(state = INITIAL_STATE, action) {
     return {
       ...state,
       expenses: state.expenses.filter((e) => e.id !== action.id),
+    };
+
+  case 'STARTING_EDIT_EXPENSE':
+
+    return {
+      ...state,
+      editor: true,
+      idToEdit: action.id,
+    };
+
+  case 'EDITED_EXPENSE':
+
+    expensesArray[action.id].description = action.payload.description;
+    expensesArray[action.id].currency = action.payload.currency;
+    expensesArray[action.id].value = action.payload.value;
+    expensesArray[action.id].tag = action.payload.tag;
+    expensesArray[action.id].method = action.payload.method;
+    return {
+      ...state,
+
+      expenses: [...state.expenses],
+      editor: false,
+      idToEdit: 0,
     };
   default:
     return state;
