@@ -11,10 +11,11 @@ export const updateExpense = ({
   payload: { id: 0, value, description, currency, method, tag, exchangeRates },
 });
 
-export const editExpense = (state) => ({
+export const editExpense = (state, index) => ({
   type: 'STARTING_EDIT_EXPENSE',
   payload: state,
   id: state.id,
+  index,
 });
 
 export const editedExpense = (state, id) => ({

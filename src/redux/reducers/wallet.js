@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   loaded: false,
   totalPrice: 0,
+  indexEdit: 0,
 };
 
 export default function wallet(state = INITIAL_STATE, action) {
@@ -40,6 +41,7 @@ export default function wallet(state = INITIAL_STATE, action) {
       ...state,
       editor: true,
       idToEdit: action.id,
+      indexEdit: action.index,
     };
 
   case 'EDITED_EXPENSE':

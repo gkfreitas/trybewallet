@@ -47,8 +47,8 @@ class WalletForm extends Component {
   };
 
   handleClickEdit = () => {
-    const { idToEditState, dispatch } = this.props;
-    dispatch(editedExpense(this.state, idToEditState));
+    const { indexEditState, dispatch } = this.props;
+    dispatch(editedExpense(this.state, indexEditState));
     this.setState({
       value: '',
       description: '',
@@ -153,6 +153,7 @@ const mapStateToProps = (state) => ({
   currenciesState: state.wallet.currencies,
   loadedState: state.wallet.loaded,
   idToEditState: state.wallet.idToEdit,
+  indexEditState: state.wallet.indexEdit,
   editorState: state.wallet.editor,
   expensesState: state.wallet.expenses,
 });
@@ -163,6 +164,7 @@ WalletForm.propTypes = {
   loadedState: PropTypes.bool.isRequired,
   idToEditState: PropTypes.number.isRequired,
   editorState: PropTypes.bool.isRequired,
+  indexEditState: PropTypes.number.isRequired,
   expensesState: PropTypes.arrayOf(PropTypes.shape({
     reduce: PropTypes.func.isRequired,
   })).isRequired,

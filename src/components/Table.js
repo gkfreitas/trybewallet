@@ -18,7 +18,7 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {expensesState.map((e) => (
+          {expensesState.map((e, i) => (
             <tr key={ e.id }>
               <td>{e.description}</td>
               <td>{e.tag}</td>
@@ -38,7 +38,7 @@ class Table extends Component {
               <td>
                 <button
                   onClick={
-                    () => dispatch(editExpense(e))
+                    () => dispatch(editExpense(e, i))
                   }
                   data-testid="edit-btn"
                 >
