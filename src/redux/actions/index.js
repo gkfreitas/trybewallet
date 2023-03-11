@@ -11,6 +11,11 @@ export const updateExpense = ({
   payload: { id: 0, value, description, currency, method, tag, exchangeRates },
 });
 
+export const deleteExpense = (id) => ({
+  type: 'DELETE_EXPENSE',
+  id,
+});
+
 export function updateExpenseFetch(state) {
   return async (dispatch) => {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');

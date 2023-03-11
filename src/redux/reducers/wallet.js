@@ -24,6 +24,13 @@ export default function wallet(state = INITIAL_STATE, action) {
       ...state,
       expenses: [...state.expenses, action.payload],
     };
+
+  case 'DELETE_EXPENSE':
+
+    return {
+      ...state,
+      expenses: state.expenses.filter((e) => e.id !== action.id),
+    };
   default:
     return state;
   }
