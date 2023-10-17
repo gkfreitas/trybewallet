@@ -50,7 +50,7 @@ class Login extends Component {
     const { email, password, isDisabled, passwordHide } = this.state;
     return (
       <div
-        className="flex flex-col md:flex-row-reverse justify-center items-center
+        className="flex flex-col md:flex-row-reverse md:justify-around md:items-center
       h-screen bg-[#BCF4B0]"
       >
         <form
@@ -81,7 +81,7 @@ class Login extends Component {
             </h3>
           </div>
           <label
-            className="flex flex-col mt-[80px] px-[15px] tracking-[0.48px]"
+            className="flex flex-col mt-[80px] px-[15px] tracking-[0.48px] text-[16px]"
             style={ { fontFamily: 'Poppins',
               fontStyle: 'normal',
             } }
@@ -98,7 +98,7 @@ class Login extends Component {
           </label>
 
           <label
-            className="mt-[24px] mx-[15px] relative tracking-[0.48px]"
+            className="mt-[24px] mx-[15px] relative tracking-[0.48px] text-[16px]"
             style={ { fontFamily: 'Poppins',
               fontStyle: 'normal',
             } }
@@ -157,11 +157,16 @@ class Login extends Component {
             </Link>
           </div>
         </form>
-        <img
-          src={ undrawCoin }
-          alt="Boneco em cima de um porco colocando dinheiro"
-          className="my-[60px] mx-auto md:w-[432px] md:h-[348px] md:ml-[25px]"
-        />
+        <div className="flex justify-center items-center">
+          <img
+            src={ undrawCoin }
+            width={ 750 }
+            height={ 600 }
+            alt="Boneco em cima de um porco colocando dinheiro"
+            className="mt-[60px] mx-auto max-w-[192px] max-h-[155px]
+          md:ml-[25px] md:max-w-full md:max-h-full "
+          />
+        </div>
       </div>
     );
   }
