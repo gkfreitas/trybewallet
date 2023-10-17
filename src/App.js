@@ -7,7 +7,7 @@ export default class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={ Login } />
+        <Route exact path="/trybewallet" component={ Login } />
         <Route path="/carteira" component={ Wallet } />
       </Switch>
     );
