@@ -48,6 +48,7 @@ class Login extends Component {
 
   render() {
     const { email, password, isDisabled, passwordHide } = this.state;
+    console.log(isDisabled);
     return (
       <div
         className="flex flex-col md:flex-row-reverse md:justify-around md:items-center
@@ -65,7 +66,7 @@ class Login extends Component {
               TrybeWallet
             </h1>
             <h2
-              className="text-[24px] font-semibold mt-[60px]"
+              className="text-[24px] font-semibold mt-[60px] lg:text-[28px]"
               style={ { fontFamily: 'Poppins',
               } }
             >
@@ -73,7 +74,7 @@ class Login extends Component {
 
             </h2>
             <h3
-              className="text-[#1E1E1E] text-[16px] mt-[14px]"
+              className="text-[#1E1E1E] text-[16px] mt-[14px] lg:text-[18px]"
               style={ { fontFamily: 'Roboto',
               } }
             >
@@ -81,7 +82,8 @@ class Login extends Component {
             </h3>
           </div>
           <label
-            className="flex flex-col mt-[80px] px-[15px] tracking-[0.48px] text-[16px]"
+            className="flex flex-col mt-[80px] px-[15px] tracking-[0.48px] text-[16px]
+            lg:text-[18px]"
             style={ { fontFamily: 'Poppins',
               fontStyle: 'normal',
             } }
@@ -98,7 +100,8 @@ class Login extends Component {
           </label>
 
           <label
-            className="mt-[24px] mx-[15px] relative tracking-[0.48px] text-[16px]"
+            className="mt-[24px] mx-[15px] relative tracking-[0.48px] text-[16px]
+            lg:text-[18px]"
             style={ { fontFamily: 'Poppins',
               fontStyle: 'normal',
             } }
@@ -133,7 +136,7 @@ class Login extends Component {
               Lembrar-se de mim
             </label>
             <span
-              className="text-[#4B4B4B] text-[8px] font-light cursor-pointer"
+              className="text-[#4B4B4B] text-[10px] font-light cursor-pointer"
               style={ {
                 fontWeight: '300',
                 fontFamily: 'Roboto',
@@ -146,9 +149,11 @@ class Login extends Component {
             <Link to="/carteira">
               <button
                 style={ { fontFamily: 'Roboto',
+                  fontWeight: '700',
                 } }
                 className="uppercase px-[50px] py-[10px] bg-[#379524]
-                rounded-[50px] mt-[34px] tracking-[0.85px] text-[10px] cursor-pointer"
+                rounded-[50px] mt-[34px] tracking-[0.85px] text-[10px] cursor-pointer
+                lg:px-[80px] lg:text-[14px]"
                 onClick={ this.handleClick }
                 disabled={ isDisabled }
               >
@@ -164,7 +169,7 @@ class Login extends Component {
             height={ 600 }
             alt="Boneco em cima de um porco colocando dinheiro"
             className="mt-[60px] mx-auto max-w-[192px] max-h-[155px]
-          md:ml-[25px] md:max-w-full md:max-h-full "
+          md:ml-[25px] md:max-w-full md:max-h-full select-none unselectable"
           />
         </div>
       </div>
