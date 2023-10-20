@@ -5,56 +5,89 @@ import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const headers = ['Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda',
+    const headers = ['ID', 'Descrição', 'Tag', 'Método de pagamento', 'Valor', 'Moeda',
       'Câmbio utilizado', 'Valor convertido', 'Moeda de conversão', 'Editar/Excluir'];
     const { expensesState, dispatch } = this.props;
     return (
-      <table>
-        <thead>
-          <tr>
-            {headers.map((e, i) => (
-              <th key={ `${e}${i}` }>{e}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {expensesState.map((e, i) => (
-            <tr key={ e.id }>
-              <td>{e.description}</td>
-              <td>{e.tag}</td>
-              <td>{e.method}</td>
-              <td>{parseFloat(e.value).toFixed(2)}</td>
-              <td>{e.currency}</td>
-              <td>BRL</td>
-              <td>
-                {
-                  parseFloat(e.exchangeRates[e.currency].ask).toFixed(2)
-                }
-                { ' '}
-                {parseFloat(e.value * e.exchangeRates[e.currency].ask).toFixed(2)}
-
-              </td>
-              <td>{e.exchangeRates[e.currency].name}</td>
-              <td>
-                <button
-                  onClick={
-                    () => dispatch(editExpense(e, i))
-                  }
-                  data-testid="edit-btn"
+      <section className="mt-[30px] mx-auto max-w-[1280px]">
+        <h1
+          className="text-center"
+          style={ {
+            fontFamily: 'Poppins',
+            flexShrink: '0',
+            fontSize: '16px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+          } }
+        >
+          Despesas
+        </h1>
+        <table
+          className="table-fixed w-full
+       border-collapse"
+        >
+          <thead>
+            <tr>
+              {headers.map((e, i) => (
+                <th
+                  key={ `${e}${i}` }
+                  className="bg-[#A1E393]"
+                  style={ {
+                    fontFamily: 'Poppins',
+                    flexShrink: '0',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: '400',
+                  } }
                 >
-                  Editar
-                </button>
-                <button
-                  data-testid="delete-btn"
-                  onClick={ () => dispatch(deleteExpense(e.id)) }
-                >
-                  Excluir
-                </button>
-              </td>
+                  {e}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {expensesState.map((e, i) => (
+              <tr
+                key={ e.id }
+                className={ `text-center 
+            ${(i + 1) % 2 === 0 ? 'bg-[#BCF4B0]' : 'bg-[#E2FFCB]'}` }
+              >
+                <td>{i + 1}</td>
+                <td className="break-words">{e.description}</td>
+                <td>{e.tag}</td>
+                <td>{e.method}</td>
+                <td>{parseFloat(e.value).toFixed(2)}</td>
+                <td>{e.currency}</td>
+                <td>BRL</td>
+                <td>
+                  {
+                    parseFloat(e.exchangeRates[e.currency].ask).toFixed(2)
+                  }
+                  { ' '}
+                  {parseFloat(e.value * e.exchangeRates[e.currency].ask).toFixed(2)}
+                </td>
+                <td>{e.exchangeRates[e.currency].name}</td>
+                <td>
+                  <button
+                    onClick={
+                      () => dispatch(editExpense(e, i))
+                    }
+                    data-testid="edit-btn"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    data-testid="delete-btn"
+                    onClick={ () => dispatch(deleteExpense(e.id)) }
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     );
   }
 }

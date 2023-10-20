@@ -69,7 +69,21 @@ class WalletForm extends Component {
     const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
     const addExpenseButton = (
-      <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
+      <button
+        className=" px-[20px] py-[10px] bg-[#379524] rounded-[5px] text-[#030F00]
+        cursor-pointer"
+        style={ {
+          fontFamily: 'Poppins',
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '500',
+        } }
+        type="button"
+        onClick={ this.handleClick }
+      >
+        Adicionar despesa
+
+      </button>
     );
     const editExpenseButton = (
       <button
@@ -81,69 +95,125 @@ class WalletForm extends Component {
     );
 
     return (
-      <form data-testid="form-wallet">
-        <label>
-          Valor:
-          <input
-            type="text"
-            data-testid="value-input"
-            name="value"
-            onChange={ this.handleChange }
-            value={ value }
-          />
-        </label>
-        <label>
-          Descrição:
-          <input
-            type="text"
-            data-testid="description-input"
-            name="description"
-            onChange={ this.handleChange }
-            value={ description }
-          />
-        </label>
-        <label>
-          Moeda
-          <select
-            data-testid="currency-input"
-            name="currency"
-            onChange={ this.handleChange }
-            value={ currency }
+      <form data-testid="form-wallet" className="px-[100px] ">
+        <section className="flex justify-around">
+          <label
+            className="flex flex-col items-center text-[#0c3b02] mr-[12px]"
+            style={ {
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              fontStyle: 'normal',
+              fontWeight: '500',
+            } }
           >
-            {loadedState && currenciesState.map((e) => (
-              <option data-testid="currency-option" key={ e }>{e}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Método de pagamento:
-          <select
-            data-testid="method-input"
-            name="method"
-            onChange={ this.handleChange }
-            value={ method }
+            Valor
+            <input
+              type="text"
+              data-testid="value-input"
+              name="value"
+              className="px-[11px] outline-none rounded-[5px] bg-[#F0FFDC] w-full"
+              placeholder="R$"
+              onChange={ this.handleChange }
+              value={ value }
+            />
+          </label>
+          <label
+            className="flex flex-col items-center text-[#0c3b02] mr-[12px]"
+            style={ {
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              fontStyle: 'normal',
+              fontWeight: '500',
+            } }
           >
-            {paymentMethods.map((e) => (
-              <option data-testid="method-option" key={ e }>{e}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Tipo de gasto:
-          <select
-            data-testid="tag-input"
-            name="tag"
-            onChange={ this.handleChange }
-            value={ tag }
+            Descrição
+            <input
+              className="px-[11px] outline-none rounded-[5px] bg-[#F0FFDC] w-full"
+              type="text"
+              data-testid="description-input"
+              name="description"
+              onChange={ this.handleChange }
+              value={ description }
+            />
+          </label>
+          <label
+            className="flex flex-col items-center text-[#0c3b02] mr-[12px]"
+            style={ {
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              fontStyle: 'normal',
+              fontWeight: '500',
+            } }
           >
-            {tags.map((e) => <option data-testid="tag-option" key={ e }>{e}</option>)}
-          </select>
-        </label>
-        {
-          editorState
-            ? (editExpenseButton)
-            : (addExpenseButton)
-        }
+            Moeda
+            <select
+              className="px-[11px] outline-none rounded-[5px] bg-[#F0FFDC] w-[100px]"
+              data-testid="currency-input"
+              name="currency"
+              onChange={ this.handleChange }
+              value={ currency }
+            >
+              {loadedState && currenciesState.map((e) => (
+                <option data-testid="currency-option" key={ e }>{e}</option>
+              ))}
+            </select>
+          </label>
+          <label
+            className="flex flex-col items-center text-[#0c3b02] mr-[14px]"
+            style={ {
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              fontStyle: 'normal',
+              fontWeight: '500',
+            } }
+          >
+            Pagemento
+            <select
+              className="px-[11px] outline-none rounded-[5px] bg-[#F0FFDC]"
+              style={ {
+                fontFamily: 'Poppins',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+              } }
+              data-testid="method-input"
+              name="method"
+              onChange={ this.handleChange }
+              value={ method }
+            >
+              {paymentMethods.map((e) => (
+                <option data-testid="method-option" key={ e }>{e}</option>
+              ))}
+            </select>
+          </label>
+          <label
+            className="flex flex-col items-center text-[#0c3b02] mr-[12px]"
+            style={ {
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              fontStyle: 'normal',
+              fontWeight: '500',
+            } }
+          >
+            Tipo de gasto
+            <select
+              className="px-[11px] outline-none rounded-[5px] bg-[#F0FFDC]"
+              data-testid="tag-input"
+              name="tag"
+              onChange={ this.handleChange }
+              value={ tag }
+            >
+              {tags.map((e) => <option data-testid="tag-option" key={ e }>{e}</option>)}
+            </select>
+          </label>
+        </section>
+        <div className="flex justify-center mt-[30px]">
+          {
+            editorState
+              ? (editExpenseButton)
+              : (addExpenseButton)
+          }
+        </div>
       </form>
     );
   }

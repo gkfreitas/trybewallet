@@ -11,6 +11,9 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
+    focusInput: false,
+    emailCorrect: false,
+    passwordCorrect: false,
     isDisabled: true,
     passwordHide: true,
   };
@@ -35,6 +38,12 @@ class Login extends Component {
     dispatch(updateEmail(email));
   };
 
+  handleInput = () => {
+    this.setState({
+      focusInput: true,
+    });
+  };
+
   changeButton = () => {
     const { password, email } = this.state;
     const minLengthPassword = 6;
@@ -42,13 +51,16 @@ class Login extends Component {
     const ERROR_CASES = [password.length < minLengthPassword, !regex.test(email)];
     const someCase = ERROR_CASES.every((e) => !e);
     this.setState({
+      emailCorrect: regex.test(email),
+      passwordCorrect: password.length >= minLengthPassword,
       isDisabled: !someCase,
     });
   };
 
   render() {
-    const { email, password, isDisabled, passwordHide } = this.state;
-    console.log(isDisabled);
+    const { email, password, isDisabled, passwordHide,
+      emailCorrect, passwordCorrect, focusInput } = this.state;
+    console.log(isDisabled, emailCorrect, passwordCorrect);
     return (
       <div
         className="flex flex-col md:flex-row-reverse md:justify-around md:items-center
@@ -90,12 +102,16 @@ class Login extends Component {
           >
             Email
             <input
+              required
               data-testid="email-input"
               onChange={ this.handleChange }
               type="email"
+              onClick={ this.handleInput }
               value={ email }
               name="email"
-              className="border-b-[1px] border-black outline-none text-[12px]"
+              className={ `border-b-[1px] outline-none text-[12px]
+              ${emailCorrect ? 'border-green-400 ' : 'border-red-400'}
+              ${focusInput ? '' : 'border-[#000000]'}` }
             />
           </label>
 
@@ -108,9 +124,13 @@ class Login extends Component {
           >
             Senha
             <input
-              className="border-b-[1px] border-black outline-none text-[12px] w-full"
+              className={ `border-b-[1px] outline-none text-[12px]
+              ${passwordCorrect ? 'border-green-400 ' : 'border-red-400'}
+              ${focusInput ? '' : 'border-[#000000]'} w-full` }
+              required
               data-testid="password-input"
               onChange={ this.handleChange }
+              onClick={ this.handleInput }
               type={ passwordHide ? 'password' : 'text' }
               value={ password }
               name="password"
