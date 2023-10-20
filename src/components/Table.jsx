@@ -1,6 +1,8 @@
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import deleteIcon from '../images/material-symbols-delete-outline.svg';
+import editIcon from '../images/tabler-edit.svg';
 import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
@@ -68,20 +70,28 @@ class Table extends Component {
                 </td>
                 <td>{e.exchangeRates[e.currency].name}</td>
                 <td>
-                  <button
-                    onClick={
-                      () => dispatch(editExpense(e, i))
-                    }
-                    data-testid="edit-btn"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    data-testid="delete-btn"
-                    onClick={ () => dispatch(deleteExpense(e.id)) }
-                  >
-                    Excluir
-                  </button>
+                  <div className="flex justify-around">
+                    <img
+                      role="presentation"
+                      src={ editIcon }
+                      alt="Icone de ditar"
+                      data-testid="edit-btn"
+                      onKeyDown={ () => dispatch(editExpense(e, i)) }
+                      onClick={
+                        () => dispatch(editExpense(e, i))
+                      }
+                      className="cursor-pointer"
+                    />
+                    <img
+                      role="presentation"
+                      src={ deleteIcon }
+                      alt="Icone de ditar"
+                      data-testid="delete-btn"
+                      onKeyDown={ () => dispatch(deleteExpense(e.id)) }
+                      onClick={ () => dispatch(deleteExpense(e.id)) }
+                      className="cursor-pointer"
+                    />
+                  </div>
                 </td>
               </tr>
             ))}
