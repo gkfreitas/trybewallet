@@ -87,6 +87,14 @@ class WalletForm extends Component {
     );
     const editExpenseButton = (
       <button
+        className=" px-[20px] py-[10px] bg-[#379524] rounded-[5px] text-[#030F00]
+        cursor-pointer"
+        style={ {
+          fontFamily: 'Poppins',
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '500',
+        } }
         type="button"
         onClick={ this.handleClickEdit }
       >
@@ -218,7 +226,6 @@ class WalletForm extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => ({
   currenciesState: state.wallet.currencies,
   loadedState: state.wallet.loaded,
